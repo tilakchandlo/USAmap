@@ -1,1 +1,2 @@
 # InfoViz
+Information Visualization
