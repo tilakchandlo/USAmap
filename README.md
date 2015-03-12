@@ -1,2 +1,2 @@
 # InfoViz
-Information Visualization
+Information and Data Visualizations using D3.js library.
