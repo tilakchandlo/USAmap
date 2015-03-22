@@ -4,7 +4,7 @@
 
 /* CSS goes here. */
 .usa {
-	fill: #000000;
+  fill: #000000;
 }
 .state-boundary {
   stroke: #fff;
@@ -20,27 +20,34 @@
 var width = 960,
     height = 1160;
 
+var projection = d3.geo.albersUsa()
+    .scale(1000)
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
 d3.json("usa.json", function(error, usa) {
   if (error) {
-  	return console.error(error);
+    return console.error(error);
   }
   svg.selectAll(".subunit")
     .data(topojson.feature(usa, usa.objects.subunits).features)
-  	.enter().append("path")
+    .enter().append("path")
     .attr("class", "usa")
-    .attr("d", d3.geo.path().projection(d3.geo.albers()));
+    .attr("d", path);
 
     svg.selectAll("path")
       .datum(topojson.feature(usa, usa.objects.states,
-      	function(a, b) {
-      		return a !== b;
-      	}))
+        function(a, b) {
+          return a !== b;
+        }))
       .attr("class", "state-boundary")
-      .attr("d", d3.geo.path().projection(d3.geo.albers()));
+      .attr("d", path);
 });
 </script>
 </body>
