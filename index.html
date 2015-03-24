@@ -3,11 +3,9 @@
 <style>
 
 /* CSS goes here. */
-.usa {
-  fill: #000000;
-}
 .state-boundary {
   stroke: #fff;
+  fill: grey;
 }
 
 </style>
@@ -17,11 +15,11 @@
 <script>
 
 /* JavaScript goes here. */
-var width = 960,
+var width = 1060,
     height = 1160;
 
 var projection = d3.geo.albersUsa()
-    .scale(1000)
+    .scale(1200)
     .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
